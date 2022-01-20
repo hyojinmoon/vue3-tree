@@ -173,12 +173,10 @@ export default {
     });
 
     const onNodeExpanded = (node, state) => {
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-      emit('nodeExpanded', node, state);
+      emit('nodeExpanded', node, state, "test!!!!");
     };
 
     const onCheckboxToggle = context => {
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       emit('checkboxToggle', context);
     };
 
