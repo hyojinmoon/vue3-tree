@@ -133,6 +133,7 @@ export default {
   },
   emits: ['nodeExpanded', 'checkboxToggle', 'update:nodes', 'selectedNode'],
   setup(props, { emit }) {
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     const { search } = useSearch();
 
     onMounted(() => emit('update:nodes', initData(props.nodes)));
@@ -173,7 +174,7 @@ export default {
     });
 
     const onNodeExpanded = (node, state) => {
-      emit('nodeExpanded', node, state);
+      emit('nodeExpanded', node, "test!!!!");
     };
 
     const onCheckboxToggle = context => {
