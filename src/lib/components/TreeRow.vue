@@ -10,7 +10,7 @@
   >
     <div
       class="tree-row-item"
-      @click="onThisClick(node)"
+      @click="onThisClick(node, $event)"
       @click.stop="toggleExpanded(node)"
     >
       <div v-if="useIcon" class="tree-row-item-icon-wrapper">
@@ -229,8 +229,8 @@ export default {
     };
 
     // custom
-    const onThisClick = node => {
-      emit('selectedNode', node);
+    const onThisClick = (node, e) => {
+      emit('selectedNode', node, e);
     };
 
     return {

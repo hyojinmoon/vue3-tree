@@ -173,7 +173,7 @@ export default {
     });
 
     const onNodeExpanded = (node, state) => {
-      emit('nodeExpanded', node, "test!!!!");
+      emit('nodeExpanded', node, state);
     };
 
     const onCheckboxToggle = context => {
@@ -189,8 +189,8 @@ export default {
       emit('update:nodes', updateNodes(removeNodeById(props.nodes, node.id)));
     };
 
-    const onThisClick = node => {
-      emit('selectedNode', node);
+    const onThisClick = (node, e) => {
+      emit('selectedNode', node, e);
     };
 
     return {
