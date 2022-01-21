@@ -4,11 +4,13 @@
     :style="{
       'padding-left': indentSize + 'px',
       'gap': gap + 'px',
-      '--row-hover-background': rowHoverBackground
+      '--row-hover-background': rowHoverBackground,
+      'cursor': 'pointer'
     }"
   >
     <div
       class="tree-row-item"
+      @click="onThisClick(node)"
       @click.stop="toggleExpanded(node)"
     >
       <div v-if="useIcon" class="tree-row-item-icon-wrapper">
@@ -89,6 +91,7 @@
         @delete-row="removedRow"
         @node-expanded="onNodeExpanded"
         @checkbox-toggle="onCheckboxToggle"
+        @selectedNode="onThisClick"
       >
         <template #childCount="{ count, checkedCount, childs }">
           <slot
@@ -193,7 +196,7 @@ export default {
       default: true,
     },
   },
-  emits: ['nodeExpanded', 'checkboxToggle', 'deleteRow'],
+  emits: ['nodeExpanded', 'checkboxToggle', 'deleteRow', 'selectedNode'],
   setup(props, { emit }) {
     const childCount = computed(() => props.node.nodes?.length);
     const checkedChildCount = computed(() => props.node.nodes?.filter(item => item.checked).length);
@@ -225,6 +228,11 @@ export default {
       emit('deleteRow', node);
     };
 
+    // custom
+    const onThisClick = node => {
+      emit('selectedNode', node);
+    };
+
     return {
       childCount,
       checkedChildCount,
@@ -233,6 +241,7 @@ export default {
       toggleCheckbox,
       onCheckboxToggle,
       removedRow,
+      onThisClick,
     };
   },
 };

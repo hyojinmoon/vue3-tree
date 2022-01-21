@@ -20,6 +20,7 @@
         @delete-row="onDeleteRow"
         @node-expanded="onNodeExpanded"
         @checkbox-toggle="onCheckboxToggle"
+        @selectedNode="onThisClick"
       >
         <template #checkbox="{ id, node: slotNode, checked, indeterminate }">
           <slot
@@ -130,7 +131,7 @@ export default {
       default: true,
     },
   },
-  emits: ['nodeExpanded', 'checkboxToggle', 'update:nodes'],
+  emits: ['nodeExpanded', 'checkboxToggle', 'update:nodes', 'selectedNode'],
   setup(props, { emit }) {
     const { search } = useSearch();
 
@@ -188,6 +189,10 @@ export default {
       emit('update:nodes', updateNodes(removeNodeById(props.nodes, node.id)));
     };
 
+    const onThisClick = node => {
+      emit('selectedNode', node);
+    };
+
     return {
       setNode,
       getNode,
@@ -198,6 +203,7 @@ export default {
       toggleCheckbox,
       onDeleteRow,
       filteredData,
+      onThisClick,
     };
   },
 };
