@@ -7,8 +7,9 @@ function updateNodes(nodes) {
       const anyDeterminate = node.nodes.some(item => item.indeterminate);
 
       if (everyChecked) {
-        node.checked = true;
-        node.indeterminate = false;
+        // 하위 노드를 모두 체크 해도 상위 노드 체크되는 기능 해제
+        // node.checked = true;
+        // node.indeterminate = false;
       } else if (someChecked) {
         node.checked = false;
         node.indeterminate = true;
