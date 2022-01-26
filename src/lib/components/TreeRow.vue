@@ -254,6 +254,8 @@ export default {
   padding: 0;
 }
 
+.tree-row-item > input[type="checkbox"] {margin: 0px 5px 0px 5px;}
+
 .tree-row {
   transform-style: preserve-3d;
 
