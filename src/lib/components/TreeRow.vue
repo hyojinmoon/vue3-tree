@@ -77,6 +77,7 @@
         :key="child.id"
         :node="child"
         :use-checkbox="useCheckbox"
+        :check-type="checkType"
         :use-icon="useIcon"
         :use-row-delete="useRowDelete"
         :show-child-count="showChildCount"
@@ -174,6 +175,10 @@ export default {
     useCheckbox: {
       type: Boolean,
       default: false,
+    },
+    checkType: {
+      type: String,
+      default: '',
     },
     useIcon:{
       type: Boolean,

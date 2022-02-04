@@ -7,6 +7,7 @@
         :key="node.id"
         :node="node"
         :use-checkbox="useCheckbox"
+        :check-type="checkType"
         :use-icon="useIcon"
         :use-row-delete="useRowDelete"
         :show-child-count="showChildCount"
@@ -110,6 +111,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    checkType: {
+      type: String,
+      default: '',
+    },
     useIcon:{
       type: Boolean,
       default: true,
@@ -147,7 +152,7 @@ export default {
       } else {
         newData = props.nodes;
       }
-      return updateNodes(newData);
+      return updateNodes(newData, props.checkType);
     });
 
 
@@ -160,7 +165,7 @@ export default {
     };
 
     const updateNode = (id, data) => {
-      emit('update:nodes', updateNodes(updateNodeById(props.nodes, id, data)));
+      emit('update:nodes', updateNodes(updateNodeById(props.nodes, id, data, props.checkType), props.checkType));
     };
 
     const toggleCheckbox = id => {
@@ -186,7 +191,7 @@ export default {
 
     const onDeleteRow = node => {
       removeNodeById(props.nodes, node.id);
-      emit('update:nodes', updateNodes(removeNodeById(props.nodes, node.id)));
+      emit('update:nodes', updateNodes(removeNodeById(props.nodes, node.id), props.checkType));
     };
 
     const onThisClick = (node, e) => {
