@@ -3,7 +3,7 @@ function updateNodes(nodes, checkType) {
     if (node.nodes?.length) {
       node.nodes = updateNodes(node.nodes, checkType);
 
-      if(checkType!=undefined && checkType!="each"){
+      if(checkType!="each"){
         const everyChecked = node.nodes.every(item => item.checked);
         const someChecked = node.nodes.some(item => item.checked);
         const anyDeterminate = node.nodes.some(item => item.indeterminate);

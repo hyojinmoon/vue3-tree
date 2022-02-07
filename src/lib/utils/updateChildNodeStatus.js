@@ -4,7 +4,7 @@ function updateChildNodeStatus(node, checkedStatus, checkType) {
 
   node.checked = checked;
 
-  if(checkType!=undefined && checkType!="each"){
+  if(checkType!="each"){
     if (node && Array.isArray(node.nodes)) {
       node.nodes = node.nodes.map((item) => {
         return {
