@@ -66,6 +66,8 @@ import {
   updateNodes,
   removeNodeById,
   expandNodeWithChilds,
+  getParentNodeById,
+  getParentNodesById,
 } from '../utils';
 
 export default {
@@ -195,6 +197,8 @@ export default {
     };
 
     const onThisClick = (node, e) => {
+      node.parentNode = getParentNodeById(props.nodes, node.id);
+      node.parentNodes = getParentNodesById(props.nodes, getParentNodeById(props.nodes, node.id));
       emit('selectedNode', node, e);
     };
 
